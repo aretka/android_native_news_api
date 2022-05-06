@@ -3,10 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/ic_baseline_more_horiz_24.xml" value="0.249" />
+        <entry key="app/src/main/res/drawable/ic_more_horizontal.xml" value="0.1125" />
+        <entry key="app/src/main/res/drawable/rounded_corners.xml" value="0.249" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.333786231884058" />
         <entry key="app/src/main/res/layout/fragment_article_details.xml" value="0.333786231884058" />
         <entry key="app/src/main/res/layout/fragment_articles_list.xml" value="0.333786231884058" />
-        <entry key="app/src/main/res/layout/list_item_article.xml" value="0.333786231884058" />
+        <entry key="app/src/main/res/layout/list_item_article.xml" value="0.5" />
       </map>
     </option>
   </component>
