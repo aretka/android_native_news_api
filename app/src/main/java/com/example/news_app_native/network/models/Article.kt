@@ -1,11 +1,11 @@
 package com.example.news_app_native.network.models
 
 data class Article(
-    val author: String,
-    val content: String,
-    val description: String,
-    val publishedAt: String,
-    val title: String,
-    val url: String,
-    val urlToImage: String
+    val author: String? = null,
+    val content: String? = null,
+    val description: String? = null,
+    val publishedAt: String? = null,
+    val title: String? = null,
+    val url: String? = null,
+    val urlToImage: String? = null
 )

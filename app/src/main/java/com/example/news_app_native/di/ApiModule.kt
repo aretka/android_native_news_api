@@ -3,6 +3,7 @@ package com.example.news_app_native.di
 import com.example.news_app_native.network.NewsApi
 import com.example.news_app_native.network.NewsApiInterceptor
 import dagger.Module
+import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
@@ -15,13 +16,15 @@ import javax.inject.Singleton
 object ApiModule {
     private const val BASE_URL = "https://newsapi.org"
 
+    @Provides
     @Singleton
     fun provideNewsApi(): NewsApi {
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .client(
-                OkHttpClient().newBuilder()
+                OkHttpClient()
+                    .newBuilder()
                     .addInterceptor(NewsApiInterceptor())
                     .build()
             )
