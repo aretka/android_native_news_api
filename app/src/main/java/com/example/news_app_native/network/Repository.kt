@@ -1,4 +1,13 @@
 package com.example.news_app_native.network
-// TODO: get data from api service
-class Repository {
+
+import com.example.news_app_native.network.models.Article
+import javax.inject.Inject
+
+class Repository @Inject constructor(
+    private val newsApi: NewsApi
+) {
+    fun getArticles() : List<Article> {
+        val response = newsApi.getTopHeadlines()
+        return response.articles
+    }
 }
