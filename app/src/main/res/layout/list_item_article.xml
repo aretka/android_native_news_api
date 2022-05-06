@@ -14,6 +14,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toStartOf="@id/picture"
+        android:fontFamily="sans-serif-black"
+        android:textSize="@dimen/large_text_size"
         tools:text="This is title heading"/>
 
     <TextView
@@ -24,6 +26,7 @@
         app:layout_constraintStart_toStartOf="@id/title"
         app:layout_constraintTop_toBottomOf="@id/title"
         app:layout_constraintEnd_toEndOf="@id/title"
+        android:textSize="@dimen/medium_text_size"
         tools:text="This is description "/>
 
     <ImageView
