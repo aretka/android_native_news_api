@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/fragmentArticleList">
+
+    <fragment
+        android:id="@+id/fragmentArticleList"
+        android:name="com.example.news_app_native.presentation.articleList.ArticleListFragment"
+        android:label="FragmentArticleList" >
+        <action
+            android:id="@+id/action_fragmentArticleList_to_fragmentArticleDetails"
+            app:destination="@id/fragmentArticleDetails" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentArticleDetails"
+        android:name="com.example.news_app_native.presentation.articleDetails.FragmentArticleDetails"
+        android:label="FragmentArticleDetails" />
+</navigation>
