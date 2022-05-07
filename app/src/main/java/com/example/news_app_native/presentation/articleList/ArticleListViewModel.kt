@@ -17,7 +17,11 @@ class ArticleListViewModel @Inject constructor(
     private val _state = MutableStateFlow(ArticleListState())
     val state = _state.asStateFlow()
 
-    fun getArticles() {
+    init {
+        getArticles()
+    }
+
+    private fun getArticles() {
         viewModelScope.launch {
             val articles = repository.getArticles()
             _state.update { it.copy(articles) }

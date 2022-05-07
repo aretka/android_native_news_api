@@ -16,6 +16,7 @@ import kotlinx.coroutines.flow.collect
 class ArticleListFragment: Fragment() {
 
     private val viewModel: ArticleListViewModel by viewModels()
+    private lateinit var adapter: ArticleListAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -23,20 +24,22 @@ class ArticleListFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val binding = FragmentArticlesListBinding.inflate(inflater, container, false)
-        binding.moveBtn.setOnClickListener {
-            viewModel.getArticles()
-        }
+        binding.setUpAdapter()
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
 //        launches coroutine onStart and cancels onStop
         lifecycleScope.launchWhenStarted {
-            viewModel.state.collect {
-                Log.d("ArticleListViewModel", "${it.articleList.size}")
+            viewModel.state.collect { state ->
+                adapter.submitList(state.articleList)
             }
         }
+    }
+
+    private fun FragmentArticlesListBinding.setUpAdapter() {
+        adapter = ArticleListAdapter(requireContext())
+        articleList.adapter = adapter
     }
 }
