@@ -1,7 +1,7 @@
 package com.example.news_app_native.presentation
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.example.news_app_native.R
 import dagger.hilt.android.AndroidEntryPoint
 
