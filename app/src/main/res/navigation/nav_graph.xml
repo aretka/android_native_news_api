@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/fragmentArticleDetails"
-        android:name="com.example.news_app_native.presentation.articleDetails.FragmentArticleDetails"
+        android:name="com.example.news_app_native.presentation.articleDetails.ArticleDetailsFragment"
         android:label="FragmentArticleDetails" >
         <argument
             android:name="article"
