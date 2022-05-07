@@ -1,42 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@drawable/rounded_corners"
-    android:padding="15dp" >
+    android:paddingTop="15dp"
+    android:paddingStart="15dp"
+    android:paddingEnd="15dp"
+    android:layout_marginEnd="15dp"
+    android:layout_marginStart="15dp"
+    android:layout_marginTop="7dp"
+    android:layout_marginBottom="7dp">
 
     <TextView
         android:id="@+id/title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toStartOf="@id/picture"
-        android:fontFamily="sans-serif-black"
-        android:textSize="@dimen/large_text_size"
+        android:textColor="@color/black"
+        android:fontFamily="sans-serif-medium"
+        android:textSize="@dimen/medium_text_size"
         tools:text="This is title heading"/>
 
     <TextView
         android:id="@+id/description"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:paddingBottom="15dp"
         android:layout_marginTop="10dp"
+        android:scrollHorizontally="true"
+        android:ellipsize="end"
+        android:maxLines="3"
         app:layout_constraintStart_toStartOf="@id/title"
         app:layout_constraintTop_toBottomOf="@id/title"
         app:layout_constraintEnd_toEndOf="@id/title"
-        android:textSize="@dimen/medium_text_size"
+        android:textSize="@dimen/small_text_size"
         tools:text="This is description "/>
 
     <ImageView
         android:id="@+id/picture"
-        app:layout_constraintDimensionRatio="1:1"
-        android:layout_width="130dp"
-        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:background="@drawable/rounded_corners"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@drawable/ic_downloading"/>
+
+
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
