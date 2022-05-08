@@ -1,1 +1,1 @@
-# android_native_news_api
+# android_native_news_app
