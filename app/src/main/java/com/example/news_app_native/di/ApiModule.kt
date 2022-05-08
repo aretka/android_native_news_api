@@ -2,8 +2,6 @@ package com.example.news_app_native.di
 
 import com.example.news_app_native.network.NewsApi
 import com.example.news_app_native.network.NewsApiInterceptor
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -20,7 +18,7 @@ object ApiModule {
 
     @Provides
     @Singleton
-    fun providesOkHttpClient() : OkHttpClient {
+    fun providesOkHttpClient(): OkHttpClient {
         return OkHttpClient()
             .newBuilder()
             .addInterceptor(NewsApiInterceptor())

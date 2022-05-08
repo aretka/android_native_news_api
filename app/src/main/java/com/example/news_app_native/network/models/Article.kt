@@ -3,10 +3,8 @@ package com.example.news_app_native.network.models
 import android.os.Parcelable
 import android.util.Log
 import kotlinx.parcelize.Parcelize
-import java.time.LocalDate
 import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
-import java.util.*
 
 @Parcelize
 data class Article(
@@ -19,9 +17,14 @@ data class Article(
     val urlToImage: String? = null
 ) : Parcelable {
     fun withFormattedDate(): Article {
-        if(publishedAt != null) {
+        if (publishedAt != null) {
             val formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy")
-            val formattedDate = ZonedDateTime.parse(publishedAt).format(formatter)
+            val formattedDate = try {
+                ZonedDateTime.parse(publishedAt).format(formatter)
+            } catch (e: Throwable) {
+                Log.e("withFormattedDate", "Failed to parse date", e)
+                publishedAt
+            }
             return this.copy(publishedAt = formattedDate)
         }
         return this
