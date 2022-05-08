@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -25,6 +26,7 @@ class ArticleListFragment: Fragment() {
     ): View? {
         binding = FragmentArticlesListBinding.inflate(inflater, container, false)
         binding.setUpAdapter()
+        binding.setUpClickListeners()
         return binding.root
     }
 
@@ -37,6 +39,31 @@ class ArticleListFragment: Fragment() {
                 binding.updateUI(state)
             }
         }
+
+        lifecycleScope.launchWhenStarted {
+            viewModel.events.collect { event ->
+                when(event) {
+                    is ArticleEvents.SuccessFetch -> showShortToast(event.message)
+                    is ArticleEvents.ErrorFetch -> showShortToast(event.message)
+                    is ArticleEvents.SuccessRefresh -> onSuccessRefresh(event.message)
+                    is ArticleEvents.ErrorRefresh -> onErrorRefresh(event.message)
+                }
+            }
+        }
+    }
+
+    private fun onSuccessRefresh(message: String) {
+        showShortToast(message)
+        binding.swipeRefresh.isRefreshing = false
+    }
+
+    private fun onErrorRefresh(message: String) {
+        showShortToast(message)
+        binding.swipeRefresh.isRefreshing = false
+    }
+
+    private fun showShortToast(message: String) {
+        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
     }
 
     private fun FragmentArticlesListBinding.setUpAdapter() {
@@ -44,10 +71,20 @@ class ArticleListFragment: Fragment() {
         articleList.adapter = adapter
     }
 
+
+    private fun FragmentArticlesListBinding.setUpClickListeners() {
+        swipeRefresh.setOnRefreshListener {
+            viewModel.onSwipeRefreshClick()
+        }
+    }
+
     private fun FragmentArticlesListBinding.updateUI(state: ArticleListState) {
         if(!state.isLoading) {
             progressCircular.visibility = View.GONE
             articleList.visibility = View.VISIBLE
+        } else {
+            progressCircular.visibility = View.VISIBLE
+            articleList.visibility = View.GONE
         }
     }
 }
