@@ -21,8 +21,8 @@ data class Article(
     fun withFormattedDate(): Article {
         if(publishedAt != null) {
             val formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy")
-            val date = ZonedDateTime.parse(publishedAt).format(formatter)
-            return this.copy(publishedAt = date)
+            val formattedDate = ZonedDateTime.parse(publishedAt).format(formatter)
+            return this.copy(publishedAt = formattedDate)
         }
         return this
     }
