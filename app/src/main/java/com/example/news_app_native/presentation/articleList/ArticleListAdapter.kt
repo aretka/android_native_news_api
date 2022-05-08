@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.news_app_native.R
 import com.example.news_app_native.databinding.ListItemArticleBinding
 import com.example.news_app_native.network.models.Article
@@ -33,15 +32,16 @@ class ArticleListAdapter(private val context: Context) :
         articleHolder.bind(item)
     }
 
-    class ArticleViewHolder(private val binding: ListItemArticleBinding, private val context: Context) :
+    class ArticleViewHolder(
+        private val binding: ListItemArticleBinding,
+        private val context: Context
+    ) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Article) {
-            binding.title.text = item.title?: "No title"
-            binding.description.text = item.description?: "No description"
-            Log.d("OnBind", "glideUrl: ${item.urlToImage}")
+            binding.title.text = item.title ?: "No title"
+            binding.description.text = item.description ?: "No description"
             Glide.with(context)
                 .load(item.urlToImage)
-                .skipMemoryCache(true)
                 .placeholder(R.drawable.ic_downloading)
                 .error(R.drawable.ic_broken_image)
                 .into(binding.picture)
