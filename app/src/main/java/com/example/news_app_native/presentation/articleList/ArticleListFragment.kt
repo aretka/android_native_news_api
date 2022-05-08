@@ -1,7 +1,6 @@
 package com.example.news_app_native.presentation.articleList
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,13 +16,14 @@ class ArticleListFragment: Fragment() {
 
     private val viewModel: ArticleListViewModel by viewModels()
     private lateinit var adapter: ArticleListAdapter
+    private lateinit var binding: FragmentArticlesListBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding = FragmentArticlesListBinding.inflate(inflater, container, false)
+        binding = FragmentArticlesListBinding.inflate(inflater, container, false)
         binding.setUpAdapter()
         return binding.root
     }
@@ -34,6 +34,7 @@ class ArticleListFragment: Fragment() {
         lifecycleScope.launchWhenStarted {
             viewModel.state.collect { state ->
                 adapter.submitList(state.articleList)
+                binding.updateUI(state)
             }
         }
     }
@@ -41,5 +42,12 @@ class ArticleListFragment: Fragment() {
     private fun FragmentArticlesListBinding.setUpAdapter() {
         adapter = ArticleListAdapter(requireContext())
         articleList.adapter = adapter
+    }
+
+    private fun FragmentArticlesListBinding.updateUI(state: ArticleListState) {
+        if(!state.isLoading) {
+            progressCircular.visibility = View.GONE
+            articleList.visibility = View.VISIBLE
+        }
     }
 }

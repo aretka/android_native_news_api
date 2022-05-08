@@ -23,8 +23,9 @@ class ArticleListViewModel @Inject constructor(
 
     private fun getArticles() {
         viewModelScope.launch {
+            _state.update { it.copy(isLoading = true) }
             val articles = repository.getArticles()
-            _state.update { it.copy(articles) }
+            _state.update { it.copy(articleList = articles, isLoading = false) }
         }
     }
 
