@@ -8,33 +8,46 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.news_app_native.R
 import com.example.news_app_native.databinding.FragmentArticleDetailsBinding
 import com.example.news_app_native.network.models.Article
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
 class ArticleDetailsFragment : Fragment() {
+
+    private val viewModel: ArticleDetailsViewModel by viewModels()
+    private lateinit var binding: FragmentArticleDetailsBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding = FragmentArticleDetailsBinding.inflate(inflater, container, false)
-        val article = ArticleDetailsFragmentArgs.fromBundle(requireArguments()).article
-        binding.setUpUI(article)
+        binding = FragmentArticleDetailsBinding.inflate(inflater, container, false)
         binding.setUpClickListeners()
 
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        lifecycleScope.launchWhenStarted {
+            viewModel.state.collect {
+                binding.setUpUI(it.article)
+            }
+        }
+    }
+
     private fun FragmentArticleDetailsBinding.setUpUI(article: Article) {
         Glide.with(requireContext())
             .load(article.urlToImage)
-            .skipMemoryCache(true)
             .placeholder(R.drawable.ic_downloading)
             .error(R.drawable.ic_broken_image)
             .into(articlePicture)
