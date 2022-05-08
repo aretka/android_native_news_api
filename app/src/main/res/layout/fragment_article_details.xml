@@ -8,7 +8,7 @@
     android:background="@drawable/white_background"
     tools:context=".presentation.articleDetails.ArticleDetailsFragment">
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -18,11 +18,11 @@
         app:layout_constraintTop_toTopOf="parent"
         android:background="@drawable/white_background"
         >
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:layout_marginTop="4dp"
             app:layout_constraintBottom_toBottomOf="@id/back_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -54,7 +54,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-    </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     <ImageView
@@ -123,22 +123,18 @@
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <ImageButton
+        android:id="@+id/link_button"
+        android:padding="11dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:background="@drawable/green_circle"
+        android:src="@drawable/ic_open_in_browser"
         app:layout_constraintTop_toBottomOf="@id/article_picture"
         app:layout_constraintEnd_toEndOf="parent"
+        android:scaleType="fitCenter"
         android:layout_marginEnd="80dp"
         android:layout_marginTop="-60dp"
-        android:elevation="4dp">
-        <ImageView
-            android:padding="10dp"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:src="@drawable/ic_open_in_browser"/>
-    </LinearLayout>
-
-
+        android:elevation="6dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
