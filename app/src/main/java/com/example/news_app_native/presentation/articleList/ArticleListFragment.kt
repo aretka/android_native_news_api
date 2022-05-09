@@ -13,7 +13,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
-class ArticleListFragment: Fragment() {
+class ArticleListFragment : Fragment() {
 
     private val viewModel: ArticleListViewModel by viewModels()
     private lateinit var adapter: ArticleListAdapter
@@ -23,7 +23,7 @@ class ArticleListFragment: Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentArticlesListBinding.inflate(inflater, container, false)
         binding.setUpAdapter()
         binding.setUpClickListeners()
@@ -42,9 +42,7 @@ class ArticleListFragment: Fragment() {
 
         lifecycleScope.launchWhenStarted {
             viewModel.events.collect { event ->
-                when(event) {
-                    is ArticleEvents.SuccessFetch -> showShortToast(event.message)
-                    is ArticleEvents.ErrorFetch -> showShortToast(event.message)
+                when (event) {
                     is ArticleEvents.SuccessRefresh -> onSuccessRefresh(event.message)
                     is ArticleEvents.ErrorRefresh -> onErrorRefresh(event.message)
                 }
@@ -74,12 +72,12 @@ class ArticleListFragment: Fragment() {
 
     private fun FragmentArticlesListBinding.setUpClickListeners() {
         swipeRefresh.setOnRefreshListener {
-            viewModel.onSwipeRefreshClick()
+            viewModel.onSwipeRefresh()
         }
     }
 
     private fun FragmentArticlesListBinding.updateUI(state: ArticleListState) {
-        if(!state.isLoading) {
+        if (!state.isLoading) {
             progressCircular.visibility = View.GONE
             articleList.visibility = View.VISIBLE
         } else {

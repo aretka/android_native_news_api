@@ -28,7 +28,7 @@ class ArticleDetailsFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentArticleDetailsBinding.inflate(inflater, container, false)
         binding.setUpClickListeners()
 

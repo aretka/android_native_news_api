@@ -22,7 +22,7 @@ data class Article(
             val formattedDate = try {
                 ZonedDateTime.parse(publishedAt).format(formatter)
             } catch (e: Throwable) {
-                Log.e("withFormattedDate", "Failed to parse date", e)
+//                Log.e("withFormattedDate", "Failed to parse date", e)
                 publishedAt
             }
             return this.copy(publishedAt = formattedDate)

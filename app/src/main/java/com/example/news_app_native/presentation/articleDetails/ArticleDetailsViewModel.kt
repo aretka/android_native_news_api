@@ -11,13 +11,14 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ArticleDetailsViewModel @Inject constructor(
-    private val savedState: SavedStateHandle
+    savedState: SavedStateHandle
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(ArticleDetailsState())
     val state = _state.asStateFlow()
 
     init {
+//        savedState.get<Article> should always return non null value
         val articleFromSafeArgs = savedState.get<Article>("article") ?: Article()
         _state.update { it.copy(article = articleFromSafeArgs) }
     }

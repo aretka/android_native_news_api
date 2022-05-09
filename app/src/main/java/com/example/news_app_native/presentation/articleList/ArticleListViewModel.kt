@@ -25,7 +25,7 @@ class ArticleListViewModel @Inject constructor(
         getArticles()
     }
 
-    fun onSwipeRefreshClick() {
+    fun onSwipeRefresh() {
         viewModelScope.launch {
             val articles = tryToGetArticles()
             _state.update { it.copy(articleList = articles) }
