@@ -2,9 +2,9 @@
 
 This news app which fetches top headings utilizing news api.
 <p>
-  <img src="https://user-images.githubusercontent.com/57877668/167409897-4ff45b18-ae1f-4ca4-9593-47383319d60f.gif" width="280"/>
-  <img src="https://user-images.githubusercontent.com/57877668/167409893-a0f1d336-df83-443a-8ced-5121fe52ce8c.gif" width="280"/>
-  <img src="https://user-images.githubusercontent.com/57877668/167409883-849c9b8f-8956-46cf-828b-84e4c69d3a20.gif" width="280"/>
+  <img src="https://user-images.githubusercontent.com/57877668/167409897-4ff45b18-ae1f-4ca4-9593-47383319d60f.gif" width="250"/>
+  <img src="https://user-images.githubusercontent.com/57877668/167409893-a0f1d336-df83-443a-8ced-5121fe52ce8c.gif" width="250"/>
+  <img src="https://user-images.githubusercontent.com/57877668/167409883-849c9b8f-8956-46cf-828b-84e4c69d3a20.gif" width="250"/>
 </p>
 
 ### Main application concepts
