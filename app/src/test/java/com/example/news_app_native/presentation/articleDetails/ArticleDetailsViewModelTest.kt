@@ -12,7 +12,7 @@ import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Test
 import kotlin.test.assertEquals
 
-@OptIn(ExperimentalCoroutinesApi::class)
+@ExperimentalCoroutinesApi
 class ArticleDetailsViewModelTest : TestCoroutineScope by TestCoroutineScope() {
 
     private val savedState: SavedStateHandle = mock()
